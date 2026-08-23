@@ -1,5 +1,5 @@
 context:
-  version: "3.0.9"
+  version: "3.1.0"
 
 package:
   name: xmake
@@ -39,7 +39,7 @@ requirements:
   host:
     - lua 5.4.*
     - lz4-c
-    - tbox ==1.8.0 *_3
+    - tbox >=1.8.2
     - xxhash >=0.8.3,<0.9
     - if: unix
       then:
@@ -47,7 +47,7 @@ requirements:
         - readline
   run:
     - lua >=5.4,<5.5.0a0
-    - tbox ==1.8.0 *_3
+    - tbox >=1.8.2
 
 tests:
   - script:
