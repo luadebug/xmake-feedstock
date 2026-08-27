@@ -119,9 +119,7 @@ grep -qi 'DLL Name: sv.dll' "${BUILD_DIR}/xmake.dll.imports" || {
 rm -f "${PREFIX}/lib/sv.dll" "${PREFIX}/lib/xmake.dll" \
       "${PREFIX}/lib/sv.lib" "${PREFIX}/lib/xmake.lib"
 
-# Install wrapper scripts to both Library/bin (standard Windows conda PATH) and bin
-mkdir -p "${PREFIX}/Library/bin" "${PREFIX}/bin"
-cp "${RECIPE_DIR}/xmake.cmd" "${PREFIX}/Library/bin/xmake.cmd"
+# Install wrapper scripts to bin (which is Library/bin under autotools_clang_conda PREFIX)
+mkdir -p "${PREFIX}/bin"
 cp "${RECIPE_DIR}/xmake.cmd" "${PREFIX}/bin/xmake.cmd"
-cp "${RECIPE_DIR}/xrepo.bat" "${PREFIX}/Library/bin/xrepo.bat"
 cp "${RECIPE_DIR}/xrepo.bat" "${PREFIX}/bin/xrepo.bat"
