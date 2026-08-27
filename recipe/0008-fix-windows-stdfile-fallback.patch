@@ -12,10 +12,10 @@ index ffeb890..cb020e3 100644
  
  static tb_bool_t xm_io_file_flush_impl(xm_io_file_t *file) {
 diff --git a/core/src/xmake/io/file_write.c b/core/src/xmake/io/file_write.c
-index 5f860d6..47afc58 100644
+index 5f860d6..d85a11c 100644
 --- a/core/src/xmake/io/file_write.c
 +++ b/core/src/xmake/io/file_write.c
-@@ -110,7 +110,33 @@ static tb_void_t xm_io_file_write_std(xm_io_file_t *file, tb_byte_t const *data,
+@@ -110,7 +110,33 @@ static tb_void_t xm_io_file_write_std(xm_io_file_t *file, tb_byte_t const *data
      tb_check_return(type != XM_IO_FILE_TYPE_STDIN);
  
      // write data to stdout/stderr
@@ -26,15 +26,15 @@ index 5f860d6..47afc58 100644
 +        if (handle != INVALID_HANDLE_VALUE && handle != NULL) {
 +            DWORD mode;
 +            if (GetConsoleMode(handle, &mode)) {
-+                tb_size_t wsize = (size + 1) * sizeof(wchar_t);
-+                wchar_t *wbuf = (wchar_t *)malloc(wsize);
++                tb_size_t wsize = (size + 1) * sizeof(tb_wchar_t);
++                tb_wchar_t *wbuf = (tb_wchar_t *)tb_malloc(wsize);
 +                if (wbuf) {
-+                    int wlen = MultiByteToWideChar(CP_UTF8, 0, (char const *)data, (int)size, wbuf, (int)(wsize / sizeof(wchar_t)));
++                    int wlen = MultiByteToWideChar(CP_UTF8, 0, (char const *)data, (int)size, (wchar_t *)wbuf, (int)(wsize / sizeof(tb_wchar_t)));
 +                    if (wlen > 0) {
 +                        DWORD written = 0;
-+                        WriteConsoleW(handle, wbuf, (DWORD)wlen, &written, NULL);
++                        WriteConsoleW(handle, (wchar_t *)wbuf, (DWORD)wlen, &written, NULL);
 +                    }
-+                    free(wbuf);
++                    tb_free(wbuf);
 +                }
 +            } else {
 +                DWORD written = 0;
