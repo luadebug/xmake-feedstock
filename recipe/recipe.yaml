@@ -16,7 +16,6 @@ source:
     - 0005-use-system-xxhash.patch
     - 0006-avoid-duplicate-is-cygpty-symbol.patch
     - 0007-honor-macosx-deployment-target.patch
-    - 0008-fix-windows-stdfile-fallback.patch
 
 build:
   number: 0
@@ -54,6 +53,7 @@ tests:
   - script:
       - if: win
         then:
+          - set "COLORTERM=color256"
           - call xmake --version
           - call xrepo --version
           - call xmake lua -c "assert(hash.strhash64('xmake'))"
