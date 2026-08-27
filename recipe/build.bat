@@ -9,6 +9,8 @@ if not exist "%PREFIX%\Library\lib" mkdir "%PREFIX%\Library\lib"
 
 copy /Y "%RECIPE_DIR%\xrepo.bat" "%PREFIX%\Library\bin\xrepo.bat"
 if %ERRORLEVEL% neq 0 exit /b 1
+copy /Y "%RECIPE_DIR%\xmake.cmd" "%PREFIX%\Library\bin\xmake.cmd"
+if %ERRORLEVEL% neq 0 exit /b 1
 
 call "%BUILD_PREFIX%\Library\bin\run_autotools_clang_conda_build.bat" win.sh
 if %ERRORLEVEL% neq 0 exit /b 1

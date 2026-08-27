@@ -51,9 +51,15 @@ requirements:
 
 tests:
   - script:
-      - xmake --version
-      - xrepo --version
-      - xmake lua -c "assert(hash.strhash64('xmake'))"
+      - if: win
+        then:
+          - call xmake --version
+          - call xrepo --version
+          - call xmake lua -c "assert(hash.strhash64('xmake'))"
+        else:
+          - xmake --version
+          - xrepo --version
+          - xmake lua -c "assert(hash.strhash64('xmake'))"
       - if: osx
         then:
           - test -f "$PREFIX/lib/libsv.dylib"
