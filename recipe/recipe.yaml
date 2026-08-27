@@ -40,7 +40,7 @@ requirements:
   host:
     - lua 5.4.*
     - lz4-c
-    - tbox >=1.8.2
+    - tbox >=1.8.2 *_1
     - xxhash >=0.8.3,<0.9
     - if: unix
       then:
@@ -48,7 +48,7 @@ requirements:
         - readline
   run:
     - lua >=5.4,<5.5.0a0
-    - tbox >=1.8.2
+    - tbox >=1.8.2 *_1
 
 tests:
   - script:
